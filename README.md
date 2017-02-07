@@ -1,4 +1,4 @@
-# BeamCalc
+# BeamCalc, Building Calc
 Программа для расчета армирования ЖБ конструкций
 
 GUI - Tkinter
