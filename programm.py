@@ -10,8 +10,6 @@ root = Tk()
 root.title('Расчёт ЖБ конструкций при распределённой нагрузке')
 root.geometry('585x450')
 
-#tL = StringVar()
-
 
 def uni_lab(tL, xL, yL, tF='Arial 10', tFG='', tW=0):
     LName = Label(text=tL, font=tF, foreground=tFG, width=tW)
