@@ -1,47 +1,73 @@
-# Программа для расчета ЖБ конструкций
-# Версия 0.000
-
 from tkinter import *
 from tkinter.ttk import *
 from math import *
 import datetime
 
-root = Tk()
-root.title('Расчёт ЖБ конструкций при распределённой нагрузке')
-root.geometry('585x450')
 
+root = Tk()
+root.title('BeamCalc (distributed load)')
+root.geometry('550x440')
 
 def uni_lab(tL, xL, yL, tF='Arial 10', tFG='', tW=0):
     LName = Label(text=tL, font=tF, foreground=tFG, width=tW)
     LName.place(x=xL, y=yL)
 
+MODES = [
+        ("RUS", '1'),
+        ("ENG", '2'),
+        ]
 
-uni_lab('Схема работы:', 0, 0)
-uni_lab('Класс бетона:', 0, 25)
-uni_lab('Класс арматуры:', 0, 50)
-uni_lab('Длинна балки, m', 0, 75)
-uni_lab('Нагрузка, kH/m', 0, 100)
-uni_lab('Момент пролёт:', 0, 175)
-uni_lab('Момент опора:', 0, 150)
-uni_lab('Ширина балки, m', 200, 75)
-uni_lab('Высота балки, m', 200, 100)
-uni_lab('Защитный слой, m', 270, 0)
-uni_lab('A0pr=', 270, 175)
-uni_lab('A0op=', 270, 150)
-uni_lab('D Верх. арм., mm', 10, 225)
-uni_lab('D Нижн. арм., mm', 10, 275)
-uni_lab('As tr op=', 254, 225)
-uni_lab('As op=', 406, 225)
-uni_lab('As tr pr=', 254, 275)
-uni_lab('As pr=', 406, 275)
-uni_lab('+', 420, 245, 'Arial 15')
-uni_lab('+', 420, 295, 'Arial 15')
-uni_lab(' -' * 71, 0, 200)
-uni_lab('ПРОГИБ:', 10, 335, 'Arial 15')
-uni_lab('расчетный -', 290, 360)
-uni_lab('нормативный -', 90, 360)
-uni_lab(' -' * 71, 0, 125)
+var1 = StringVar()
+var1.set('1')
 
+yy=30
+for text, mode in MODES:
+    rbl = Radiobutton(root, text=text, variable=var1, value=mode)
+    yy+=20
+    rbl.place(x=460, y=yy)
+
+RUS={1:'Схема работы:',
+     2:'Класс бетона:',
+     3:'wwww',
+     }
+ENG={1:'Scheme:',
+     2:'Concrete class:',
+     3:'99999999',
+     }
+
+def labxt(x):
+    if var1.get()=='1':
+        return RUS[x]
+    elif var1.get()=='2':
+        return ENG[x]
+
+def LABS():
+    uni_lab(labxt(1), 0, 0, tW=15)
+    uni_lab(labxt(2), 0, 25, tW=15)
+    uni_lab('Класс арматуры:', 0, 50)
+    uni_lab('Длинна балки, m', 0, 75)
+    uni_lab('Нагрузка, kH/m', 0, 100)
+    uni_lab('Момент пролёт:', 0, 175)
+    uni_lab('Момент опора:', 0, 150)
+    uni_lab('Ширина балки, m', 200, 75)
+    uni_lab('Высота балки, m', 200, 100)
+    uni_lab('Защитный слой, m', 270, 0)
+    uni_lab('A0pr=', 270, 175)
+    uni_lab('A0op=', 270, 150)
+    uni_lab('D Верх. арм., mm', 10, 225)
+    uni_lab('D Нижн. арм., mm', 10, 275)
+    uni_lab('As tr op=', 254, 225)
+    uni_lab('As op=', 406, 225)
+    uni_lab('As tr pr=', 254, 275)
+    uni_lab('As pr=', 406, 275)
+    uni_lab('+', 420, 245, 'Arial 15')
+    uni_lab('+', 420, 295, 'Arial 15')
+    uni_lab(' -' * 71, 0, 200)
+    uni_lab('ПРОГИБ:', 10, 335, 'Arial 15')
+    uni_lab('расчетный -', 290, 360)
+    uni_lab('нормативный -', 90, 360)
+    uni_lab(' -' * 71, 0, 125)
+LABS()
 
 beton_class = ('B10', 'B15', 'B20', 'B25', 'B30',
                'B35', 'B40', 'B45', 'B50', 'B55', 'B60')
@@ -81,7 +107,6 @@ def get_rb(root):
 beton_combo = Combobox(width=5, values=beton_class)
 beton_combo.set('B30')
 beton_combo.place(x=110, y=25)
-
 
 schema_data = ('Заделка-Заделка',
                'Заделка-Шарнир',
@@ -278,6 +303,7 @@ def get_nu(root):
 
 
 def start(root):
+    LABS()
     get_km(root)
     get_rb(root)
     get_rs(root)
