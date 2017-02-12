@@ -141,7 +141,7 @@ beton_combo.place(x=110, y=25)
 schema_data = ('||--------||',
                '||--------o',
                'o--------o',
-               'o---------')
+               '||---------')
 kpr_data = (24, 16, 8, 0)
 kop_data = (12, 8, 0, 2)
 kpr_dict = dict(zip(schema_data, kpr_data))
