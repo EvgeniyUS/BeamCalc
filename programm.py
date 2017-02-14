@@ -81,10 +81,10 @@ def LABS():
     uni_lab('A0op=', 270, 150)
     uni_lab('TOP arm', 30, 225)
     uni_lab('mm', 170, 225)
-    uni_lab('Ø -', 90, 220, 'Arial 15')
+    uni_lab('⌀ -', 90, 220, 'Arial 15')
     uni_lab('LOW arm', 30, 275)
     uni_lab('mm', 170, 275)
-    uni_lab('Ø -', 90, 270, 'Arial 15')
+    uni_lab('⌀ -', 90, 270, 'Arial 15')
     uni_lab('As tr op=', 254, 225)
     uni_lab('As op=', 406, 225)
     uni_lab('As tr pr=', 254, 275)
@@ -141,7 +141,7 @@ beton_combo.place(x=110, y=25)
 schema_data = ('||--------||',
                '||--------o',
                'o--------o',
-               'o---------')
+               '||---------')
 kpr_data = (24, 16, 8, 0)
 kop_data = (12, 8, 0, 2)
 kpr_dict = dict(zip(schema_data, kpr_data))
